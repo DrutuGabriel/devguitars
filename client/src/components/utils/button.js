@@ -6,7 +6,7 @@ const MyButton = (props) => {
     let template = '';
 
     switch(props.type){
-      case "default":
+      case 'default':
         template = <Link
           className="link_default"
           to={props.linkTo}
