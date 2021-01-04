@@ -1,20 +1,28 @@
 
 export const validate = (element, formdata = []) => {
-  let error = [true, ''];
+  let message = '';
+  let valid = true;
+  let validData = [valid, message];
 
   if(element.validation.email){
-    const valid = /\S+@\S+\.\S+/.test(element.value);
-    const message = `${!valid ? 'Must be a valid email':''}`;
-    error = !valid ? [valid, message] : error;
+    valid = /\S+@\S+\.\S+/.test(element.value);
+    message = `${!valid ? 'Must be a valid email':''}`;
+    validData = !valid ? [valid, message] : validData;
+  }
+
+  if(element.validation.confirm){
+    valid = element.value.trim() === formdata[element.validation.confirm].value.trim();
+    message = `${!valid ? 'Passwords do not match':''}`;
+    validData = !valid ? [valid, message] : validData;
   }
 
   if(element.validation.required){
-    const valid = element.value.trim() !== '';
-    const message = `${!valid ? 'This field is required':''}`;
-    error = !valid ? [valid, message] : error;
+    valid = element.value.trim() !== '';
+    message = `${!valid ? 'This field is required':''}`;
+    validData = !valid ? [valid, message] : validData;
   }
 
-  return error;
+  return validData;
 }
 
 export const update = (element, formdata, formName) => {
@@ -44,6 +52,10 @@ export const generateData = (formdata, formName) => {
   let dataToSubmit = {};
 
   for(let key in formdata){
+    if(key == 'confirmPassword'){
+      continue;
+    }
+
     dataToSubmit[key] = formdata[key].value;
   }
 
