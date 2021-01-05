@@ -1,6 +1,7 @@
 import {
   LOGIN_USER,
-  REGISTER_USER
+  REGISTER_USER,
+  AUTH_USER
 } from '../actions/types';
 
 const userReducer = (state = {}, action) => {
@@ -9,6 +10,8 @@ const userReducer = (state = {}, action) => {
       return {...state, register: action.payload.success};
     case LOGIN_USER:
       return {...state, loginSuccess: action.payload.loginSuccess};
+    case AUTH_USER:
+      return {...state, userData: action.payload};
     default:
       return state;
   }
