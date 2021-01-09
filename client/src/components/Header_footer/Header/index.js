@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import { logoutUser } from '../../../actions/user_actions';
 
 
 class Header extends Component {
@@ -41,33 +43,71 @@ class Header extends Component {
     ]
   }
 
+  logOutHandler = () => {
+    this.props.dispatch(logoutUser())
+      .then(response => {
+        if (response.payload.success) {
+          this.props.history.push('/');
+        }
+      });
+  }
+
   defaultLink = (item, i) => (
-    <Link to={item.linkTo} key={i}>
-      {item.name}
-    </Link>
+    item.name === 'Log out' ?
+      <div
+        className="log_out_link"
+        key={i}
+        onClick={() => this.logOutHandler()}
+      >
+        {item.name}
+      </div>
+      :
+      <Link to={item.linkTo} key={i}>
+        {item.name}
+      </Link>
   )
+
+  cartLink = (item, i) => {
+    const user = this.props.user.userData;
+
+    return (
+      <div className="cart_link" key={i}>
+        <span>{user.cart ? user.cart.length : 0}</span>
+        <Link to={item.linkTo} key={i}>
+          {item.name}
+        </Link>
+      </div>
+    )
+  }
 
   showLinks = (linksList) => {
     let list = [];
 
-    if(this.props.user.userData){
+    if (this.props.user.userData) {
       linksList.forEach((item) => {
-        if(!this.props.user.userData.isAuth){
-          if(item.public === true){
+        if (!this.props.user.userData.isAuth) {
+          if (item.public === true) {
             list.push(item);
           }
         } else {
-          if(item.name !== 'Log In'){
+          if (item.name !== 'Log In') {
             list.push(item);
           }
-         
+
         }
       })
     }
 
-    return list.map((item, i) => this.defaultLink(item, i));
+    return list.map((item, i) => {
+      if (item.name !== 'My Cart') {
+        return this.defaultLink(item, i)
+      } else {
+        return this.cartLink(item, i)
+      }
+
+    });
   }
-  
+
   render() {
     return (
       <header className="bck_b_light">
@@ -91,10 +131,10 @@ class Header extends Component {
   }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
   return {
     user: state.user
   };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps)(withRouter(Header));
