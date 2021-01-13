@@ -7,6 +7,7 @@ import {
 
 import HomeSlider from './home_slider';
 import HomePromotion from './home_promotion';
+import CardBlock from '../utils/card_block';
 
 
 class Home extends Component {
@@ -20,7 +21,15 @@ class Home extends Component {
     return (
       <div>
         <HomeSlider />
+        <CardBlock 
+          title="Best Selling guitars" 
+          list={this.props.products.bySell} 
+        />
         <HomePromotion />
+        <CardBlock 
+          title="New Arrivals" 
+          list={this.props.products.byArrival} 
+        />
       </div>
     );
   }
