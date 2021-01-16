@@ -38,7 +38,7 @@ class CollapseCheckbox extends Component {
   renderList = () => (
     this.props.list ?
       this.props.list.map((item) => (
-        <ListItem key={item._id} style={{padding: '10px 0'}}>
+        <ListItem key={item._id} style={{padding: '10px 0 0'}}>
           <ListItemText primary={item.name} />
           <ListItemSecondaryAction>
             <Checkbox 
@@ -63,9 +63,17 @@ class CollapseCheckbox extends Component {
       newChecked.splice(currentIndex,1);
     }
 
+
     this.setState({
       checked: newChecked
+    }, () => {
+      this.props.handleFilters(newChecked);
     });
+  }
+
+  handleFilters = (filters, category) => {
+    console.log(filters);
+
   }
 
   render() {
