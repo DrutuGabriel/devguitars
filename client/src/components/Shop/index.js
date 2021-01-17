@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 
-import {getBrands, getWoods} from '../../actions/products_actions';
+import {
+  getBrands, 
+  getWoods,
+  getProductsToShop
+} from '../../actions/products_actions';
 import {frets, price} from '../utils/Form/fixed_categories';
 
 import PageTop from '../utils/page_top';
@@ -24,6 +28,12 @@ class Shop extends Component {
   componentDidMount(){
     this.props.dispatch(getBrands());
     this.props.dispatch(getWoods());
+
+    this.props.dispatch(getProductsToShop(
+      this.state.skip,
+      this.state.limit,
+      this.state.filters
+    ));
   }
 
   handleFilters = (filters, category) => {
@@ -37,6 +47,8 @@ class Shop extends Component {
 
     this.setState({
       filters: newFilters
+    },() => {
+     this.showFilteredResults();
     });
   }
 
@@ -52,9 +64,17 @@ class Shop extends Component {
 
     return array;
   }
+  
+  showFilteredResults = () => {
+    this.props.dispatch(getProductsToShop(
+      0,
+      this.state.limit,
+      this.state.filters
+    ))
+      .then(() => this.setState({skip: 0}));
+  }
 
   render() {
-    console.log(this.state);
     const products = this.props.products;
 
     return (
