@@ -27,37 +27,39 @@ class Card extends Component {
             <div className="name">{props.name}</div>
             <div className="price">${props.price}</div>
           </div> 
-         </div>
-         <div>
-            { props.grid ?
-              <div className="description"> 
-                Lorem ipsum
-              </div>
-              :null
-            }
-          </div>
-          <div className="actions">
-            <div className="button_wrapp">
-              <MyButton 
-                type="default"
-                altClass="card_link"
-                title="View product"
-                linkTo={`/product_detail/${props._id}`}
-                addStyles={{
-                  margin: '10px 0 0 0'
-                }}
-              />
+          <div>
+              { props.grid ?
+                <div className="description"> 
+                  <p>
+                    {props.description}
+                  </p>
+                </div>
+                :null
+              }
             </div>
-            <div className="button_wrapp">
-              <MyButton 
-                type="bag_link"
-                runAction={() => {
-                  console.log('added to cart')
-                }}
-                addStyles={{
-                  margin: '10px 0 0 0'
-                }}
-              />
+            <div className="actions">
+              <div className="button_wrapp">
+                <MyButton 
+                  type="default"
+                  altClass="card_link"
+                  title="View product"
+                  linkTo={`/product_detail/${props._id}`}
+                  addStyles={{
+                    margin: '10px 0 0 0'
+                  }}
+                />
+              </div>
+              <div className="button_wrapp">
+                <MyButton 
+                  type="bag_link"
+                  runAction={() => {
+                    console.log('added to cart')
+                  }}
+                  addStyles={{
+                    margin: '10px 0 0 0'
+                  }}
+                />
+              </div>
             </div>
           </div>
       </div>
