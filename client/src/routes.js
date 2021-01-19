@@ -10,10 +10,16 @@ import Register from './components/Register_login/register';
 import UserDashboard from './components/User';
 import Shop from './components/Shop';
 
+import AddProduct from './components/User/Admin/add_product';
+
 const Routes = () => {
   return (
     <Layout>
       <Switch>
+        <Route path="/admin/add_product" exact 
+          component={Auth(AddProduct, true)} 
+        />
+
         <Route path="/user/dashboard" exact 
           component={Auth(UserDashboard, true)} 
         />
