@@ -45,7 +45,8 @@ const FormField = ({ id, formdata, change }) => {
               {...formdata.config}
               onBlur={(event) => change({ event, id, blur: true })}
               onChange={(event) => change({ event, id })}
-            >{formdata.value}</textarea>
+              value={formdata.value}
+            ></textarea>
             {showError()}
           </div>
         );

@@ -126,7 +126,7 @@ app.post('/api/product/article', auth, admin, (req, res) => {
 
     res.status(200).json({
       success: true,
-      product, doc
+      article: doc
     });
   })
 });
