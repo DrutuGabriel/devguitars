@@ -8,6 +8,7 @@ import {
   update,
   generateData,
   isFormValid,
+  populateOptionFields
 } from "../../utils/Form/formActions";
 
 class AddProduct extends Component {
@@ -192,6 +193,34 @@ class AddProduct extends Component {
   submitForm = (event) => {};
 
   updateForm = (event) => {};
+
+  updateFields = (formdata) => {
+    this.setState({formdata});
+  }
+
+  componentDidMount(){
+    const formdata = this.state.formdata;
+
+    this.props.dispatch(getBrands())
+      .then(response => {
+        
+        const newFormdata = populateOptionFields(
+          formdata, this.props.products.brands, 'brand'
+        );
+
+        this.updateFields(newFormdata);
+      });
+
+      this.props.dispatch(getWoods())
+      .then(response => {
+
+        const newFormdata = populateOptionFields(
+          formdata, this.props.products.woods, 'wood'
+        );
+
+        this.updateFields(newFormdata);
+      });
+  }
 
   render() {
     return (
