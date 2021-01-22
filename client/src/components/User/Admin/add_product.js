@@ -16,6 +16,7 @@ import {
   populateOptionFields,
   resetFields
 } from "../../utils/Form/formActions";
+import FileUpload from '../../utils/Form/fileupload';
 
 class AddProduct extends Component {
   state = {
@@ -183,6 +184,16 @@ class AddProduct extends Component {
         validationMessage: "",
         showLabel: true,
       },
+      images: {
+        value: [],
+        validation: {
+          required: false,
+        },
+        valid: true,
+        touched: false,
+        validationMessage: "",
+        showLabel: false,
+      }
     },
   };
 
@@ -274,6 +285,10 @@ class AddProduct extends Component {
       });
   }
 
+  imagesHandler = (images) => {
+
+  }
+
   render() {
     return (
       <UserLayout>
@@ -281,6 +296,12 @@ class AddProduct extends Component {
           <h1>Add product</h1>
 
           <form onSubmit={(event) => this.submitForm(event)}>
+
+            <FileUpload
+              imagesHandler={(images) => this.imagesHandler(images)}
+              reset={this.state.formSuccess}
+            />
+
             {this.renderFormFields(["name", "description", "price"])}
 
             <div className="form_devider"></div>
