@@ -292,6 +292,21 @@ app.post(
   }
 );
 
+app.get(
+  "/api/users/remove-image",
+  auth,
+  admin,
+  (req, res) => {
+    let image_id = req.query.public_id;
+
+    cloudinary.uploader.destroy(image_id, (error, result) => {
+      if(error) return res.json({success: false});
+
+      res.status(200).send({succes: true});
+    });
+  }
+)
+
 
 const port = process.env.PORT || 3002;
 
