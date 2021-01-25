@@ -47,17 +47,34 @@ class ManageBrands extends Component {
     : null
   )
 
+  resetFieldsHandler = () => {
+    const newFormdata = resetFields(this.state.formdata, 'brands');
+
+    this.setState({
+      formdata: newFormdata,
+      formSuccess: false
+    });
+
+  }
+
   submitForm = event => {
     event.preventDefault();
 
     let dataToSubmit = generateData(this.state.formdata, 'brands');
     let formIsValid = isFormValid(this.state.formdata, 'brands');
+    let existingBrands = this.props.products.brands;
+
 
     if(formIsValid){
       this.props
-        .dispatch(addBrand(dataToSubmit, this.props.products.brands))
-        .then(() => {
-          console.log(this.props.products.addBrand);
+        .dispatch(addBrand(dataToSubmit, existingBrands))
+        .then((response) => {
+          if(response.payload.success){
+            this.resetFieldsHandler();
+          } else {
+            this.setState({formError: true});
+          }
+          
         });
 
     } else {
