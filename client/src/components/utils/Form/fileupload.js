@@ -43,7 +43,7 @@ class FileUpload extends Component {
         this.setState({
           uploading: false,
           uploadedFiles: [
-            ... this.state.uploadedFiles,
+            ...this.state.uploadedFiles,
             response.data
           ]
         }, () => {

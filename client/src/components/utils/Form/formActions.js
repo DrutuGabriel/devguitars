@@ -52,7 +52,7 @@ export const generateData = (formdata, formName) => {
   let dataToSubmit = {};
 
   for(let key in formdata){
-    if(key == 'confirmPassword'){
+    if(key === 'confirmPassword'){
       continue;
     }
 

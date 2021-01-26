@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {auth} from '../actions/user_actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
-export default function(ComposedClass, reload, adminRoute = null){
+export default function authCheck(ComposedClass, reload, adminRoute = null){
   class AuthenticationCheck extends Component {
     state = {
       loading: true
@@ -21,7 +21,7 @@ export default function(ComposedClass, reload, adminRoute = null){
           } else {
             if(adminRoute && !user.isAdmin){
               this.props.history.push('/user/dashboard');
-            } else if (reload == false){
+            } else if (reload === false){
               this.props.history.push('/user/dashboard');
             }
           }
