@@ -9,6 +9,7 @@ import RegisterLogin from "./components/Register_login";
 import Register from "./components/Register_login/register";
 import UserDashboard from "./components/User";
 import Shop from "./components/Shop";
+import ProductPage from "./components/Product";
 
 import AddProduct from "./components/User/Admin/add_product";
 import ManageCategories from "./components/User/Admin/manage_categories";
@@ -38,15 +39,16 @@ const Routes = () => {
           exact
           component={Auth(RegisterLogin, false)}
         />
-        <Route 
-          path="/register" 
-          exact 
-          component={Auth(Register, false)} 
-        />
+        <Route path="/register" exact component={Auth(Register, false)} />
 
+        
+        <Route
+          path="/product-details/:id"
+          exact
+          component={Auth(ProductPage, null)}
+        />
         <Route path="/shop" exact component={Auth(Shop, null)} />
         <Route path="/" exact component={Auth(Home, null)} />
-        
       </Switch>
     </Layout>
   );

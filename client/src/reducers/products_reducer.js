@@ -7,7 +7,9 @@ import {
   ADD_WOOD,
   GET_PRODUCTS_TO_SHOP,
   ADD_PRODUCT,
-  CLEAR_PRODUCT 
+  CLEAR_PRODUCT,
+  GET_PRODUCT_DETAILS,
+  CLEAR_PRODUCT_DETAILS
 } from '../actions/types';
 
 const userReducer = (state = {}, action) => {
@@ -47,6 +49,16 @@ const userReducer = (state = {}, action) => {
       return {
         ...state,
         addProduct: action.payload,
+      };
+    case GET_PRODUCT_DETAILS:
+      return {
+        ...state,
+        productDetails: action.payload
+      };
+    case CLEAR_PRODUCT_DETAILS:
+      return {
+        ...state,
+        productDetails: action.payload
       };
     default:
       return state;

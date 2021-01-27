@@ -8,7 +8,9 @@ import {
   ADD_WOOD,
   GET_PRODUCTS_TO_SHOP,
   ADD_PRODUCT,
-  CLEAR_PRODUCT
+  CLEAR_PRODUCT,
+  GET_PRODUCT_DETAILS,
+  CLEAR_PRODUCT_DETAILS
 } from './types';
 
 import {PRODUCT_SERVER} from '../components/utils/misc';
@@ -144,5 +146,27 @@ export function addWood(dataToSubmit, existingWoods){
   return {
     type: ADD_WOOD,
     payload: request
+  }
+}
+
+export function getProductDetails(productId){
+  const request = axios
+    .get(`${PRODUCT_SERVER}/articles_by_id?id=${productId}&type=single`)
+    .then((response) => {
+      return {
+        product: response.data[0]
+      };
+    });
+
+  return {
+    type: GET_PRODUCT_DETAILS,
+    payload: request
+  }
+}
+
+export function clearProductDetails(){
+  return {
+    type: CLEAR_PRODUCT_DETAILS,
+    payload: null
   }
 }

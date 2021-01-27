@@ -111,6 +111,7 @@ app.get('/api/product/articles_by_id', (req, res)=>{
 
   if(type === 'array'){
     let ids = req.query.id.split(',');
+    items = [];
     items = ids.map(item => {
       return mongoose.Types.ObjectId(item);
     });
