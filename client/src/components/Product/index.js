@@ -36,7 +36,7 @@ class Product extends Component {
                 <div className="right">
                   <ProdNfo 
                     addToCart={(id) => this.addToCartHandler(id)}
-                    detail={this.props.products.productDetails} 
+                    detail={this.props.products.productDetails.product} 
                     />
                 </div>
               </div>
