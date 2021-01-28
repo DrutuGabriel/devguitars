@@ -6,6 +6,7 @@ import {
   clearProductDetails,
 } from "../../actions/products_actions";
 import ProdNfo from './prodNfo';
+import ProdImg from './prodImg';
 
 class Product extends Component {
   componentDidMount() {
@@ -31,7 +32,13 @@ class Product extends Component {
             this.props.products.productDetails ? 
               <div className="product_detail_wrapper">
                 <div className="left">
-                  Images
+                  <div style={{
+                    width: '500px'
+                  }}>
+                    <ProdImg
+                      detail={this.props.products.productDetails.product}
+                    />
+                  </div>
                 </div>
                 <div className="right">
                   <ProdNfo 
