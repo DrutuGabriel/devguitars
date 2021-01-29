@@ -5,9 +5,7 @@ class ProdImg extends Component {
   state = {
     lightbox: false,
     imagePos: 0,
-    lightboxImages: [
-
-    ]
+    lightboxImages: []
   }
 
   componentDidMount(){
@@ -72,7 +70,7 @@ class ProdImg extends Component {
               style={{
                 background: `url(${this.renderImageCardImage(detail.images)}) no-repeat`
               }}
-              onClick={() => this.handleLightBox()}
+              onClick={() => this.handleLightBox(0)}
             ></div>
           </div>
           <div className="main_thumbs">

@@ -12,7 +12,15 @@ class Product extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
 
-    this.props.dispatch(getProductDetails(id));
+    this.props.dispatch(getProductDetails(id))
+      .then(response => {
+        if(
+          !this.props.products.productDetails || 
+          !this.props.products.productDetails.product
+        ){
+          this.props.history.push('/');
+        }
+      });
   }
 
   componentWillUnmount(){
@@ -24,12 +32,14 @@ class Product extends Component {
   }
 
   render() {
+    const productDetails = this.props.products.productDetails;
+
     return (
       <div>
         <PageTop title="Product details" />
         <div className="container">
           {
-            this.props.products.productDetails ? 
+             productDetails && productDetails.product ? 
               <div className="product_detail_wrapper">
                 <div className="left">
                   <div style={{
