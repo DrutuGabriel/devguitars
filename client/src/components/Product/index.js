@@ -7,6 +7,9 @@ import {
 } from "../../actions/products_actions";
 import ProdNfo from './prodNfo';
 import ProdImg from './prodImg';
+import { addToCart } from '../../actions/user_actions';
+
+
 
 class Product extends Component {
   componentDidMount() {
@@ -28,7 +31,7 @@ class Product extends Component {
   }
 
   addToCartHandler = id => {
-    
+    this.props.dispatch(addToCart(id));
   }
 
   render() {
