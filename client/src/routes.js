@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import RegisterLogin from "./components/Register_login";
 import Register from "./components/Register_login/register";
 import UserDashboard from "./components/User";
+import UserCart from './components/User/cart';
 import Shop from "./components/Shop";
 import ProductPage from "./components/Product";
 
@@ -33,7 +34,11 @@ const Routes = () => {
           exact
           component={Auth(UserDashboard, true)}
         />
-
+        <Route
+          path="/user/cart"
+          exact
+          component={Auth(UserCart, true)}
+        />
         <Route
           path="/register_login"
           exact
@@ -47,6 +52,7 @@ const Routes = () => {
           exact
           component={Auth(ProductPage, null)}
         />
+       
         <Route path="/shop" exact component={Auth(Shop, null)} />
         <Route path="/" exact component={Auth(Home, null)} />
       </Switch>
