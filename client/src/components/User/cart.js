@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCartItems } from '../../actions/user_actions';
 import UserLayout from '../../hoc/user';
+import UserProductBlock from '../utils/User/product_block';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
 import faFrown from '@fortawesome/fontawesome-free-solid/faFrown';
 import faSmile from '@fortawesome/fontawesome-free-solid/faSmile';
@@ -39,11 +40,22 @@ class UserCart extends Component {
     }
   }
 
+  removeFromCart = id => {
+    console.log(`Remove ${id}`);
+  }
+
   render() {
     return (
       <UserLayout>
         <div>
-          cart
+          <h1>My cart</h1>
+          <div className="user_cart">
+            <UserProductBlock
+              products={this.props.user}
+              type="cart"
+              removeItem={id => this.removeFromCart(id)}
+            />
+          </div>
         </div>
       </UserLayout>
     );
