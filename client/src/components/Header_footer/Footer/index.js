@@ -10,7 +10,7 @@ const Footer = () => {
     <footer className="bck_b_dark">
         <div className="container">
           <div className="logo">
-            Waves
+            DevGUITARS
           </div>
           <div className="wrapper">
             <div className="left">
@@ -56,7 +56,7 @@ const Footer = () => {
                   />
                   <div className="nfo">
                     <div>Email</div>
-                    <div>nfo@waves.com</div>
+                    <div>contact@devguitars.com</div>
                   </div>
                 </div>
               </div>

@@ -28,7 +28,9 @@ class UserCart extends Component {
       this.props
         .dispatch(getCartItems(cartItems, user.userData.cart))
         .then(() => {
-          this.setState({loading: false});
+          if(this.props.user.cartDetails.length){
+           this.calculateTotal(this.props.user.cartDetails);
+          }
         })
 
     } else {
@@ -40,9 +42,31 @@ class UserCart extends Component {
     }
   }
 
+  calculateTotal = cartDetails => {
+    let total = 0;
+
+    cartDetails.forEach(item => {
+      total += (parseInt(item.price,10) * parseInt(item.quantity,10))
+    });
+
+    this.setState({
+      total, 
+      showTotal: true
+    })
+  }
+
   removeFromCart = id => {
     console.log(`Remove ${id}`);
   }
+
+  showNoItemMessage = () => (
+    <div className="cart_no_items">
+      <FontAwesomeIcon icon={faFrown} />
+      <div>
+        You have no items
+      </div>
+    </div>
+  )
 
   render() {
     return (
@@ -55,7 +79,37 @@ class UserCart extends Component {
               type="cart"
               removeItem={id => this.removeFromCart(id)}
             />
+            { this.state.showTotal ?
+              <div>
+                <div className="user_cart_sum">
+                  <div>
+                    Total amount: $ {this.state.total}
+                  </div>
+                </div>
+              </div>
+            : 
+              this.state.showSuccess ? 
+                <div className="cart_success">
+                  <FontAwesomeIcon icon={faSmile} />
+                  <div>
+                    THANK YOU !
+                  </div>
+                  <div>
+                    Your order is now complete
+                  </div>
+                </div>
+              : this.showNoItemMessage()
+            }
           </div>
+
+          {
+            this.state.showTotal ?
+              <div className="paypal_button_container">
+                Paypal
+              </div>
+            : null
+          }
+
         </div>
       </UserLayout>
     );
