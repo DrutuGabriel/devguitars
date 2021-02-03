@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCartItems } from '../../actions/user_actions';
+import { 
+  getCartItems,
+  removeCartItem
+} from '../../actions/user_actions';
 import UserLayout from '../../hoc/user';
 import UserProductBlock from '../utils/User/product_block';
 import FontAwesomeIcon from '@fortawesome/react-fontawesome';
@@ -49,6 +52,7 @@ class UserCart extends Component {
       total += (parseInt(item.price,10) * parseInt(item.quantity,10))
     });
 
+
     this.setState({
       total, 
       showTotal: true
@@ -56,7 +60,17 @@ class UserCart extends Component {
   }
 
   removeFromCart = id => {
-    console.log(`Remove ${id}`);
+    this.props.dispatch(removeCartItem(id))
+      .then(response => {
+        if(this.props.user.cartDetails.length){
+          this.calculateTotal(this.props.user.cartDetails)
+        } else {
+          this.setState({
+            showTotal: false
+          });
+        }
+        
+      })
   }
 
   showNoItemMessage = () => (

@@ -5,7 +5,8 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   ADD_TO_CART_USER,
-  GET_CART_ITEMS
+  GET_CART_ITEMS,
+  REMOVE_CART_ITEM
 } from './types';
 
 import {USER_SERVER, PRODUCT_SERVER} from '../components/utils/misc';
@@ -82,4 +83,26 @@ export function getCartItems(cartItems, userCart) {
     type: GET_CART_ITEMS,
     payload: request,
   };
+}
+
+export function removeCartItem(id){
+  const request = axios.get(`${USER_SERVER}/remove-from-cart?_id=${id}`)
+    .then(response => {
+      const cartMapQuantity = {};
+
+      response.data.cart.forEach(item => {
+        cartMapQuantity[item.id] = item.quantity;
+      });
+
+      response.data.cartDetails.forEach((item, i) => {
+          response.data.cartDetails[i].quantity = cartMapQuantity[item._id];
+      });
+
+      return response.data;
+    });
+
+  return {
+    type: REMOVE_CART_ITEM,
+    payload: request
+  }
 }

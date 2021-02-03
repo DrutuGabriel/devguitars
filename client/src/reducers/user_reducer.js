@@ -4,7 +4,8 @@ import {
   AUTH_USER,
   LOGOUT_USER,
   ADD_TO_CART_USER,
-  GET_CART_ITEMS
+  GET_CART_ITEMS,
+  REMOVE_CART_ITEM
 } from '../actions/types';
 
 const userReducer = (state = {}, action) => {
@@ -29,6 +30,15 @@ const userReducer = (state = {}, action) => {
       return {
         ...state,
         cartDetails: action.payload
+      }
+    case REMOVE_CART_ITEM:
+      return {
+        ...state,
+        cartDetails: action.payload.cartDetails,
+        userData: {
+          ...state.userData,
+          cart: action.payload.cart
+        }
       }
     default:
       return state;
