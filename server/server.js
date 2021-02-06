@@ -26,6 +26,7 @@ const {User} = require('./models/user');
 const {Brand} = require('./models/brand');
 const {Wood} = require('./models/wood');
 const {Product} = require('./models/product');
+const {Payment} = require('./models/payment');
 
 // Middlewares
 const {auth} = require('./middleware/auth');
@@ -388,6 +389,37 @@ app.get('/api/users/remove-from-cart', auth, (req, res) => {
   );
 });
 
+app.post('/api/users/success-buy', auth, (req, res) => {
+  let history = [];
+  let transactionData = {};
+
+  // user history
+  req.body.cartDetails.forEach(item => {
+    history.push({
+      dateOfPurchase: Date.now(),
+      name: item.name,
+      brand: item.brand.name,
+      id: item._id,
+      price: item.price,
+      quantity: item.quantity,
+      paymentId: req.body.paymentData.paymentID
+    });
+  });
+
+  // payments
+  transactionData.user = {
+    id: req.user._id,
+    name: req.user.name,
+    lastname: req.user.lastname,
+    emal: req.user.email
+  }
+
+  transactionData.data = req.body.paymentData;
+  transactionData.products = history;
+
+  // const payment = new Payment();
+  
+});
 
 const port = process.env.PORT || 3002;
 
