@@ -84,15 +84,20 @@ class UserCart extends Component {
   )
 
   handleTransactionError = data => {
-
+    console.log('Error', data);
   }
 
   handleTransactionCancel = data => {
-
+    console.log('Cancel', data);
   }
 
   handleTransactionSuccess = data => {
-
+    // dispatch clear cart
+    this.setState({
+      total: 0,
+      showTotal: false,
+      showSuccess: true
+    });
   }
 
   render() {
