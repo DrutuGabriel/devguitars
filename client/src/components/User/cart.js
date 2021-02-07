@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { 
   getCartItems,
-  removeCartItem
+  removeCartItem,
+  onSuccessBuy
 } from '../../actions/user_actions';
 import UserLayout from '../../hoc/user';
 import UserProductBlock from '../utils/User/product_block';
@@ -92,11 +93,17 @@ class UserCart extends Component {
   }
 
   handleTransactionSuccess = data => {
-    // dispatch clear cart
-    this.setState({
-      total: 0,
-      showTotal: false,
-      showSuccess: true
+    this.props.dispatch(onSuccessBuy({
+      cartDetails: this.props.user.cartDetails,
+      paymentData: data
+    })).then(() => {
+      if(this.props.user.successBuy){
+        this.setState({
+          total: 0,
+          showTotal: false,
+          showSuccess: true
+        });
+      }
     });
   }
 
