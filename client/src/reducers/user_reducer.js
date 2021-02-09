@@ -6,8 +6,10 @@ import {
   ADD_TO_CART_USER,
   GET_CART_ITEMS,
   REMOVE_CART_ITEM,
-  ON_SUCCESS_BUY
-} from '../actions/types';
+  ON_SUCCESS_BUY,
+  UPDATE_USER_DATA,
+  CLEAR_UPDATE_USER_DATA
+} from "../actions/types";
 
 const userReducer = (state = {}, action) => {
   switch (action.type) {
@@ -30,17 +32,17 @@ const userReducer = (state = {}, action) => {
     case GET_CART_ITEMS:
       return {
         ...state,
-        cartDetails: action.payload
-      }
+        cartDetails: action.payload,
+      };
     case REMOVE_CART_ITEM:
       return {
         ...state,
         cartDetails: action.payload.cartDetails,
         userData: {
           ...state.userData,
-          cart: action.payload.cart
-        }
-      }
+          cart: action.payload.cart,
+        },
+      };
     case ON_SUCCESS_BUY:
       return {
         ...state,
@@ -48,12 +50,18 @@ const userReducer = (state = {}, action) => {
         cartDetails: action.payload.cartDetails,
         userData: {
           ...state.userData,
-          cart: action.payload.cart
-        }
-      }
+          cart: action.payload.cart,
+        },
+      };
+    case UPDATE_USER_DATA:
+    case CLEAR_UPDATE_USER_DATA:
+      return {
+        ...state,
+        profileUpdated: action.payload.success
+      };
     default:
       return state;
   }
-}
+};
 
 export default userReducer;

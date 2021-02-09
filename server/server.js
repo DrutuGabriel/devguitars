@@ -465,6 +465,23 @@ app.post('/api/users/success-buy', auth, (req, res) => {
   
 });
 
+
+app.post('/api/users/update-profile', auth, (req, res) => {
+  User.findOneAndUpdate(
+    {_id: req.user._id },
+    { $set: req.body },
+    { new: true },
+    (err, doc) => {
+      if(err) return res.json({success: false, err});
+
+      return res.status(200).send({
+        success: true
+      });
+    }
+  );
+});
+
+
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => {

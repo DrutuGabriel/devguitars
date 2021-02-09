@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import {updateUserData, clearUpdateUser} from '../../actions/user_actions';
 
 import FormField from "../utils/Form/formfield";
 import {
@@ -88,7 +89,22 @@ class UpdatePersonalInfo extends Component {
     let formIsValid = isFormValid(this.state.formdata, "update_user");
 
     if (formIsValid) {
-      console.log(dataToSubmit);
+      this.props.dispatch(updateUserData(dataToSubmit))
+        .then(() => {
+            if(this.props.user.profileUpdated){
+              this.setState({
+                formSuccess: true,
+                formError: false
+              }, () => {
+                setTimeout(() => {
+                  this.props.dispatch(clearUpdateUser());
+                  this.setState({
+                    formSuccess: false
+                  });
+                }, 2000)
+              });
+            }
+        });
     } else {
       this.setState({
         formError: true,
@@ -126,7 +142,7 @@ class UpdatePersonalInfo extends Component {
           </div>
           <div>
             {this.state.formSuccess ? (
-              <div className="form-success">Success</div>
+              <div className="form_success">Success</div>
             ) : null}
             {this.state.formError ? (
               <div className="error_label">Please check your data</div>
