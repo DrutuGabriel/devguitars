@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { getSiteData } from '../../../actions/site_actions';
 import FormField from "../../utils/Form/formfield";
 import {
   update,
@@ -84,6 +85,16 @@ class UpdateSiteInfo extends Component {
       },
     },
   };
+
+  componentDidMount(){
+    this.props.dispatch(getSiteData())
+      .then(() => {
+        const newFormdata = populateFields(this.state.formdata, this.props.site.siteData[0]);
+        this.setState({
+          formdata: newFormdata
+        });
+      })
+  }
 
   updateForm = (element) => {
     const newFormdata = update(element, this.state.formdata, "site_info");

@@ -20,3 +20,5 @@ export const ADD_PRODUCT = 'add_product';
 export const CLEAR_PRODUCT = 'clear_product';
 export const GET_PRODUCT_DETAILS = 'get_product_details';
 export const CLEAR_PRODUCT_DETAILS = 'clear_product_details';
+
+export const GET_SITE_DATA = 'get_site_data';
