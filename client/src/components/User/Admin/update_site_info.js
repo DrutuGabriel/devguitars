@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getSiteData } from '../../../actions/site_actions';
+import { getSiteData, updateSiteData } from "../../../actions/site_actions";
 import FormField from "../../utils/Form/formfield";
 import {
   update,
@@ -86,14 +86,16 @@ class UpdateSiteInfo extends Component {
     },
   };
 
-  componentDidMount(){
-    this.props.dispatch(getSiteData())
-      .then(() => {
-        const newFormdata = populateFields(this.state.formdata, this.props.site.siteData[0]);
-        this.setState({
-          formdata: newFormdata
-        });
-      })
+  componentDidMount() {
+    this.props.dispatch(getSiteData()).then(() => {
+      const newFormdata = populateFields(
+        this.state.formdata,
+        this.props.site.siteData[0]
+      );
+      this.setState({
+        formdata: newFormdata,
+      });
+    });
   }
 
   updateForm = (element) => {
@@ -112,7 +114,20 @@ class UpdateSiteInfo extends Component {
     let formIsValid = isFormValid(this.state.formdata, "site_info");
 
     if (formIsValid) {
-      console.log(dataToSubmit);
+      
+      this.props.dispatch(updateSiteData(dataToSubmit))
+        .then(() => {
+          this.setState({
+            formSuccess: true,
+            formError: false
+          },() => {
+            setTimeout(() => {
+              this.setState({
+                formSuccess: false
+              });
+            }, 2000);
+          })
+        });
     } else {
       this.setState({
         formError: true,
@@ -154,9 +169,7 @@ class UpdateSiteInfo extends Component {
               <div className="error_label">Please check your data</div>
             ) : null}
 
-            <button onClick={(event) => this.submitForm(event)}>
-              Update
-            </button>
+            <button onClick={(event) => this.submitForm(event)}>Update</button>
           </div>
         </form>
       </div>

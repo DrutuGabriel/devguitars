@@ -22,3 +22,4 @@ export const GET_PRODUCT_DETAILS = 'get_product_details';
 export const CLEAR_PRODUCT_DETAILS = 'clear_product_details';
 
 export const GET_SITE_DATA = 'get_site_data';
+export const UPDATE_SITE_DATA = 'update_site_data';

@@ -1,4 +1,7 @@
-import { GET_SITE_DATA } from "../actions/types";
+import { 
+  GET_SITE_DATA,
+  UPDATE_SITE_DATA
+ } from "../actions/types";
 
 const siteReducer = (state = {}, action) => {
   switch (action.type) {
@@ -6,6 +9,11 @@ const siteReducer = (state = {}, action) => {
       return {
         ...state,
         siteData: action.payload
+      }
+    case UPDATE_SITE_DATA:
+      return {
+        ...state,
+        siteData: action.payload.siteInfo
       }
     default:
       return {

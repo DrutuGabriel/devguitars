@@ -494,6 +494,22 @@ app.get('/api/site/data', (req, res) => {
   });
 });
 
+app.post('/api/site/data', auth, admin, (req, res) => {
+  Site.findOneAndUpdate(
+    { name: 'site'},
+    { $set: { siteInfo: req.body}},
+    { new: true},
+    (err, doc) => {
+      if(err) return res.json({success: false, err});
+
+      return res.status(200).send({
+        success: true,
+        siteInfo: doc.siteInfo
+      });
+    }
+  );
+});
+
 
 const port = process.env.PORT || 3002;
 
