@@ -291,7 +291,7 @@ app.post(
 
         res.status(200).send({
           public_id: result.public_id,
-          url: result.url
+          url: result.secure_url
         });
       }, {
         public_id: `${Date.now()}`,
