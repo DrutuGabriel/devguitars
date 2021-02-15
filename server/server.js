@@ -38,6 +38,9 @@ const {Site} = require('./models/site');
 const {auth} = require('./middleware/auth');
 const {admin} = require('./middleware/admin');
 
+// UTILS
+const { sendMail } = require('./utils/mail/index');
+
 
 //===================
 //      Products
@@ -224,7 +227,9 @@ app.post('/api/users/register', (req, res) =>{
   user.save((err, doc) => {
     if(err) return res.json({success: false, err});
 
-    res.status(200).json({
+    sendMail(doc.email, doc.name, null, 'welcome');
+
+    return res.status(200).json({
       success: true,
       // userdata: doc
     });
