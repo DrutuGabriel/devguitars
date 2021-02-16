@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const formidable = require('express-formidable');
 const cloudinary = require('cloudinary');
+const SHA1 = require('crypto-js/sha1');
 
 const app = express();
 const mongoose = require('mongoose');
@@ -404,9 +405,17 @@ app.post('/api/users/success-buy', auth, (req, res) => {
   let history = [];
   let transactionData = {};
 
+  const date = new Date();
+  const po = `PO-${date.getSeconds()}${date.getMilliseconds()}-${SHA1(
+    req.user._id
+  )
+    .toString()
+    .substr(0, 8)}`;
+
   // user history
   req.body.cartDetails.forEach(item => {
     history.push({
+      porder: po,
       dateOfPurchase: Date.now(),
       name: item.name,
       brand: item.brand.name,
@@ -425,7 +434,10 @@ app.post('/api/users/success-buy', auth, (req, res) => {
     emal: req.user.email
   }
 
-  transactionData.data = req.body.paymentData;
+  transactionData.data = {
+    ...req.body.paymentData, 
+    proder: po
+  };
   transactionData.products = history;
 
   User.findOneAndUpdate(

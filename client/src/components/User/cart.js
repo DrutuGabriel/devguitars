@@ -98,11 +98,13 @@ class UserCart extends Component {
       paymentData: data
     })).then(() => {
       if(this.props.user.successBuy){
-        this.setState({
-          total: 0,
-          showTotal: false,
-          showSuccess: true
-        });
+        setTimeout(() => {
+          this.setState({
+            total: 0,
+            showTotal: false,
+            showSuccess: true
+          });
+        }, 500);
       }
     });
   }

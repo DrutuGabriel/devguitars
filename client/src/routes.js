@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import Auth from "./hoc/auth";
 
 import Layout from "./hoc/layout";
+import PageNotFound from "./components/utils/page_not_found";
 import Home from "./components/Home";
 import RegisterLogin from "./components/Register_login";
 import Register from "./components/Register_login/register";
@@ -13,7 +14,6 @@ import UpdateProfile from './components/User/update_profile'
 
 import Shop from "./components/Shop";
 import ProductPage from "./components/Product";
-
 
 import AddProduct from "./components/User/Admin/add_product";
 import ManageCategories from "./components/User/Admin/manage_categories";
@@ -70,6 +70,7 @@ const Routes = () => {
        
         <Route path="/shop" exact component={Auth(Shop, null)} />
         <Route path="/" exact component={Auth(Home, null)} />
+        <Route component={Auth(PageNotFound, null)} />
       </Switch>
     </Layout>
   );
