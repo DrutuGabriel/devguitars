@@ -18,6 +18,7 @@ import ProductPage from "./components/Product";
 import AddProduct from "./components/User/Admin/add_product";
 import ManageCategories from "./components/User/Admin/manage_categories";
 import ManageSite from './components/User/Admin/manage_site';
+import AddFile from './components/User/Admin/add_file';
 
 const Routes = () => {
   return (
@@ -37,6 +38,11 @@ const Routes = () => {
           path="/admin/site_info"
           exact
           component={Auth(ManageSite, true)}
+        />
+        <Route
+          path="/admin/add_file"
+          exact
+          component={Auth(AddFile, true)}
         />
         <Route
           path="/user/dashboard"
