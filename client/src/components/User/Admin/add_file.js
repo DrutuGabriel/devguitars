@@ -54,7 +54,6 @@ class AddFile extends Component {
   componentDidMount(){
     axios.get('/api/users/admin_files')
       .then(response => {
-        console.log(response.data);
         this.setState({files: response.data})
       });
   }
