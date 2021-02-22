@@ -15,6 +15,7 @@ import UpdateProfile from './components/User/update_profile';
 import Shop from './components/Shop';
 import ProductPage from './components/Product';
 import ResetUser from './components/Reset_user';
+import ResetPass from './components/Reset_user/reset_pass';
 
 import AddProduct from './components/User/Admin/add_product';
 import ManageCategories from './components/User/Admin/manage_categories';
@@ -60,6 +61,11 @@ const Routes = () => {
         />
         <Route path="/register" exact component={Auth(Register, false)} />
         <Route path="/reset-user" exact component={Auth(ResetUser, false)} />
+        <Route
+          path="/reset-password/:token"
+          exact
+          component={Auth(ResetPass, false)}
+        />
 
         <Route
           path="/product-details/:id"
