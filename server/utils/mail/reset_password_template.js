@@ -41,7 +41,7 @@ const resetPassword = (data) => {
               text-transform: uppercase;
             "
           >
-            Waves
+          DevGuitars
           </h1>
         </td>
       </tr>

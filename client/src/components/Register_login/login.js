@@ -1,18 +1,12 @@
 import React, { Component } from 'react';
-import {withRouter} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {loginUser} from '../../actions/user_actions';
+import { withRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginUser } from '../../actions/user_actions';
 
 import FormField from '../utils/Form/formfield';
-import {
-  update, 
-  generateData, 
-  isFormValid
-} from '../utils/Form/formActions';
-
+import { update, generateData, isFormValid } from '../utils/Form/formActions';
 
 class Login extends Component {
-
   state = {
     formError: false,
     formSuccess: '',
@@ -23,15 +17,15 @@ class Login extends Component {
         config: {
           name: 'email_input',
           type: 'email',
-          placeholder: 'Enter your email'
+          placeholder: 'Enter your email',
         },
         validation: {
           required: true,
-          email: true
+          email: true,
         },
         valid: false,
         touched: false,
-        validationMessage: ''
+        validationMessage: '',
       },
       password: {
         element: 'input',
@@ -39,26 +33,26 @@ class Login extends Component {
         config: {
           name: 'password_input',
           type: 'password',
-          placeholder: 'Enter your password'
+          placeholder: 'Enter your password',
         },
         validation: {
           required: true,
         },
         valid: false,
         touched: false,
-        validationMessage: ''
-      }
-    }
-  }
+        validationMessage: '',
+      },
+    },
+  };
 
   updateForm = (element) => {
     const newFormdata = update(element, this.state.formdata, 'login');
 
     this.setState({
       formError: false,
-      formdata: newFormdata
-    })
-  }
+      formdata: newFormdata,
+    });
+  };
 
   submitForm = (event) => {
     event.preventDefault();
@@ -66,49 +60,51 @@ class Login extends Component {
     let dataToSubmit = generateData(this.state.formdata, 'login');
     let formIsValid = isFormValid(this.state.formdata, 'login');
 
-    if(formIsValid){
-      this.props.dispatch(loginUser(dataToSubmit))
-        .then(response => {
-          if(response.payload.loginSuccess){
-              this.props.history.push('/user/dashboard');
-          } else {
-            this.setState({
-              formError: true
-            });
-          }
-        });
+    if (formIsValid) {
+      this.props.dispatch(loginUser(dataToSubmit)).then((response) => {
+        if (response.payload.loginSuccess) {
+          this.props.history.push('/user/dashboard');
+        } else {
+          this.setState({
+              formError: true,
+          });
+        }
+      });
     } else {
       this.setState({
-        formError: true
+        formError: true,
       });
     }
-  }
+  };
 
   render() {
     return (
       <div className="signin_wrapper">
         <form onSubmit={(ev) => this.submitForm(ev)}>
           <FormField
-            id='email'
+            id="email"
             formdata={this.state.formdata.email}
             change={(el) => this.updateForm(el)}
           />
-           <FormField
-            id='password'
+          <FormField
+            id="password"
             formdata={this.state.formdata.password}
             change={(el) => this.updateForm(el)}
           />
 
-          { 
-            this.state.formError ?
-              <div className="error_label">
-                Please check your data
-              </div>
-              : null
-          }
+          {this.state.formError ? (
+            <div className="error_label">Please check your data</div>
+          ) : null}
 
-          <button onClick={event => this.submitForm(event)}>Log in</button>
-
+          <button onClick={(event) => this.submitForm(event)}>Log in</button>
+          <button 
+            style={{
+              marginLeft: '10px'
+            }}
+            onClick={() => this.props.history.push('/reset-user')}
+          >
+            Forgot my password
+          </button>
         </form>
       </div>
     );

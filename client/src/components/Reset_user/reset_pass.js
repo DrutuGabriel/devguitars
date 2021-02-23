@@ -64,6 +64,27 @@ class ResetPass extends Component {
     let formIsValid = isFormValid(this.state.formdata, 'reset_email');
 
     if (formIsValid) {
+      axios.post(`${USER_SERVER}/reset-password`, {
+        ...dataToSubmit,
+        resetToken: this.state.resetToken
+      })
+        .then(resp => {
+          if(!resp.data.success){
+            this.setState({
+              formError: true,
+              formErrorMessage: resp.data.message
+            })
+          } else {
+            this.setState({
+              formError: false,
+              formSuccess: true
+            });
+
+            setTimeout(() => {
+              this.props.history.push('/register_login');
+            }, 3000)
+          }
+        })
       console.log(dataToSubmit);
     } else {
       this.setState({
@@ -100,9 +121,6 @@ class ResetPass extends Component {
             </div>
           </div>
           <div>
-            {this.state.formSuccess ? (
-              <div className="form_success">Done, check your email</div>
-            ) : null}
 
             {this.state.formError ? (
               <div className="error_label">{this.state.formErrorMessage}</div>
@@ -113,6 +131,17 @@ class ResetPass extends Component {
             </button>
           </div>
         </form>
+
+        <Dialog open={this.state.formSuccess}>
+          <div className="dialog_alert">
+            <div>Alright !</div>
+            <div>
+              Your password was reseted.
+              You will be redirected to the LOGIN in a couple of seconds...
+            </div>
+          </div>
+        </Dialog>
+
       </div>
     );
   }
