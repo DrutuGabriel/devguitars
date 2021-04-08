@@ -256,6 +256,7 @@ header .logo {
   color: #ffffff;
   font-size: 40px;
   padding: 11px 0px;
+  text-align: center;
 }
 
 header a {

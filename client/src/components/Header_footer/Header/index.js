@@ -121,7 +121,11 @@ class Header extends Component {
       <header className="bck_b_light">
         <div className="container menu-container">
           <div className="left logo-wrapper">
-            <div className="logo">DevGUITARS</div>
+            <div className="logo">
+              <Link to="/" style={{ margin: 0 }}>
+                DevGUITARS
+              </Link>
+            </div>
           </div>
           <div className="right">
             <div className="top">{this.showLinks(this.state.user)}</div>
