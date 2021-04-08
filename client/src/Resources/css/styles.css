@@ -295,12 +295,13 @@ header .cart_link {
   position: relative;
 }
 
-header .cart_link span {
+header .cart_link span,
+.cart_link span {
   position: absolute;
   background: red;
   top: 2px;
   color: #ffff;
-  left: -8px;
+  right: 110%;
   border-radius: 50%;
   padding: 0px 7px 2px 7px;
   font-size: 12px;
@@ -311,6 +312,14 @@ header .log_out_link {
   margin-left: 20px;
 }
 
+header .side_drawer_wrapper {
+  display: none;
+  color: #ffffff;
+  text-align: right;
+}
+header .side_drawer_btn {
+	margin-right: 15px;
+}
 
 /*============================
           FOOTER

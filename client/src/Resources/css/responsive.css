@@ -29,15 +29,32 @@
 @media screen and (max-width: 640px){
   header .container .logo-wrapper {
     width: 50%;
-    max-width: 200px;
+    max-width: 210px;
+    min-width: 210px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   header .logo {
     font-size: 24px;
     padding: 0px;
   }
+  
+  .page_container {
+    padding-top: 50px;
+  }
+}
+
+@media screen and (max-width: 520px){
+  header .menu-container .right .top,
+  header .menu-container .right .bottom {
+    display: none;
+  }
+  header .menu-container .side_drawer_wrapper {
+    display: block;
+  }
+
 }
 
 @media screen and (max-width: 480px){
