@@ -111,8 +111,8 @@ class Header extends Component {
   render() {
     return (
       <header className="bck_b_light">
-        <div className="container">
-          <div className="left">
+        <div className="container menu-container">
+          <div className="left logo-wrapper">
             <div className="logo">
               DevGUITARS
             </div>
