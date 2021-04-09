@@ -13,7 +13,7 @@ const Footer = ({site}) => {
           <div className="logo">
             DevGUITARS
           </div>
-          <div className="wrapper">
+          <div className="wrapper footer_content_wrapper">
             <div className="left">
               <h2>Contact information</h2>
               <div className="business_nfo">
