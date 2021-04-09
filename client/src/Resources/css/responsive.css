@@ -84,12 +84,32 @@
 }
 
 @media screen and (max-width: 480px){
-  .card_item_wrapper,
-  .card_block_shop .card_item_wrapper {
+  .card_item_wrapper  {
     width: 88%;
     max-width: 88%;
     margin-left: auto;
     margin-right: auto;
+  }
+  
+  .card_block_shop .card_item_wrapper {
+    width: 88%;
+    max-width: 88%;
+    margin-left: 6%;
+    margin-right: 6%;
+  }
+
+  .card_block_shop .card_item_wrapper.grid_bars {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .card_item_wrapper.grid_bars .image {
+    width: 100%;
+    background-size: contain !important;
   }
 
   footer .business_nfo {
@@ -98,5 +118,10 @@
 
   footer .business_nfo .tag {
     width: 100%;
+  }
+  .load_more_container span {
+    font-size: 20px;
+    padding: 10px 40px;
+   
   }
 }
