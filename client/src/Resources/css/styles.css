@@ -732,6 +732,8 @@ footer .business_nfo .nfo {
 
 .paypal_button_container{
   margin: 10px 0px;
+  width: 390px;
+  max-width: 100%;
 }
 
 /*=============================
@@ -825,6 +827,7 @@ footer .business_nfo .nfo {
   padding: 10px;
   margin-bottom: 10px;
   border: 1px solid #ebebeb;
+  overflow: hidden;
 }
 
 .user_product_block .item {
@@ -839,7 +842,8 @@ footer .business_nfo .nfo {
   margin-right: 10px;
 }
 .user_product_block .item.btn {
-  width: 0px;
+  width: 66px;
+  max-width: 100px;
 }
 
 

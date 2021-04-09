@@ -45,7 +45,7 @@ class Paypal extends Component {
     };
 
     return (
-      <div>
+      <div className="pay-btn-wrapper">
         <PaypalExpressBtn
           total={total}
           currency={currency}
@@ -55,7 +55,7 @@ class Paypal extends Component {
           onCancel={onCancel}
           onSuccess={onSuccess}
           style={{
-            size: "large",
+            size: "responsive",
             color: "blue",
             shape: "rect",
             label: "buynow",

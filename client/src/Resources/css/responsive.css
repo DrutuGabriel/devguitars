@@ -84,6 +84,21 @@
   .page_container {
     padding-top: 50px;
   }
+
+  .user_product_block {
+    flex-flow: column;
+    align-items: center; 
+    max-width: 420px;
+    margin: 15px auto;
+  }
+  
+  .user_product_block .item {
+    width: 100%;
+    text-align: center;
+  }
+  .user_product_block .cart_remove_btn {
+    margin: 25px auto 15px;
+  }
 }
 
 @media screen and (max-width: 520px) {
@@ -93,6 +108,9 @@
   }
   header .menu-container .side_drawer_wrapper {
     display: block;
+  }
+  .history_blocks {
+    overflow-x: auto;
   }
 }
 
