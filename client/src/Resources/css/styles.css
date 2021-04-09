@@ -662,6 +662,10 @@ footer .business_nfo .nfo {
 .product_detail_wrapper .product_actions .cart {
   width: 149px;
 }
+.product_detail_wrapper .product_images_wrapper {
+  width: 500px;
+  max-width: 90vw;
+}
 .user_cart_sum {
   font-size: 20px;
   text-transform: uppercase;
