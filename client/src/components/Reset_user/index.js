@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import {USER_SERVER} from '../utils/misc';
+import { USER_SERVER } from '../utils/misc';
 import FormField from '../utils/Form/formfield';
 import { update, generateData, isFormValid } from '../utils/Form/formActions';
 
@@ -44,14 +44,13 @@ class ResetUser extends Component {
     let formIsValid = isFormValid(this.state.formdata, 'reset_email');
 
     if (formIsValid) {
-      axios.post(`${USER_SERVER}/reset-user`, dataToSubmit)
-        .then(resp => {
-          if(resp.data.success){
-            this.setState({
-              formSuccess: true
-            });
-          }
-        })
+      axios.post(`${USER_SERVER}/reset-user`, dataToSubmit).then((resp) => {
+        if (resp.data.success) {
+          this.setState({
+            formSuccess: true,
+          });
+        }
+      });
     } else {
       this.setState({
         formError: true,
@@ -62,20 +61,20 @@ class ResetUser extends Component {
   render() {
     return (
       <div className="container">
-        <h1>Reset password</h1>
-        <form onSubmit={(event) => this.submitForm(event)}>
+        
+        <form
+          onSubmit={(event) => this.submitForm(event)}
+          className="reset_pass_wrapper"
+        >
+          <h1>Reset password</h1>
           <FormField
             id="email"
             formdata={this.state.formdata.email}
             change={(el) => this.updateForm(el)}
           />
-          {
-            this.state.formSuccess ?
-              <div className="form_success">
-                Done, check your email
-              </div>
-            : null
-          }
+          {this.state.formSuccess ? (
+            <div className="form_success">Done, check your email</div>
+          ) : null}
           {this.state.formError ? (
             <div className="error_label">Please check your data</div>
           ) : null}

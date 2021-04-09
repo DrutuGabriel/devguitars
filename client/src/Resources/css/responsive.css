@@ -1,10 +1,13 @@
-@media screen and (max-width: 1100px){
+@media screen and (max-width: 1100px) {
   .footer_content_wrapper {
     padding: 0 15px 0 15px;
   }
+  .user_container .user_left_nav {
+    padding-left: 20px;
+  }
 }
 
-@media screen and (max-width: 1024px){
+@media screen and (max-width: 1024px) {
   .card_item_wrapper,
   .card_block_shop .card_item_wrapper {
     width: 50%;
@@ -21,8 +24,7 @@
   }
 }
 
-
-@media screen and (max-width: 770px){
+@media screen and (max-width: 770px) {
   .shop_wrapper {
     flex-flow: column;
   }
@@ -35,7 +37,6 @@
     flex-flow: column;
     flex-direction: column-reverse;
   }
-
 
   .home_promotion .tag.title,
   .featured_container .featured_action .tag.title {
@@ -50,9 +51,22 @@
     text-align: center;
     padding: 73px 0;
   }
+
+  .user_container {
+    flex-flow: column;
+  }
+  .user_container .user_right {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .register_login_container {
+    margin: 0 0px 75px 0px;
+    flex-flow: column;
+    flex-direction: column-reverse;
+  }
 }
 
-@media screen and (max-width: 640px){
+@media screen and (max-width: 640px) {
   header .container .logo-wrapper {
     width: 50%;
     max-width: 210px;
@@ -66,13 +80,13 @@
     font-size: 24px;
     padding: 0px;
   }
-  
+
   .page_container {
     padding-top: 50px;
   }
 }
 
-@media screen and (max-width: 520px){
+@media screen and (max-width: 520px) {
   header .menu-container .right .top,
   header .menu-container .right .bottom {
     display: none;
@@ -80,17 +94,16 @@
   header .menu-container .side_drawer_wrapper {
     display: block;
   }
-
 }
 
-@media screen and (max-width: 480px){
-  .card_item_wrapper  {
+@media screen and (max-width: 480px) {
+  .card_item_wrapper {
     width: 88%;
     max-width: 88%;
     margin-left: auto;
     margin-right: auto;
   }
-  
+
   .card_block_shop .card_item_wrapper {
     width: 88%;
     max-width: 88%;
@@ -122,6 +135,14 @@
   .load_more_container span {
     font-size: 20px;
     padding: 10px 40px;
-   
+  }
+  .form_block_two {
+    flex-flow: column;
+  }
+  .form_block_two .block:nth-child(1) {
+    padding-right: 0;
+  }
+  .form_block_two .block:nth-child(2) {
+    padding-left: 0;
   }
 }
